@@ -28,7 +28,11 @@ st.set_page_config(
 
 # Charger la clé API
 load_dotenv("test.env")
-api_key = os.getenv('GEMINI_API_KEY')
+try:
+    api_key = st.secrets["GEMINI_API_KEY"]  # Streamlit Cloud
+except:
+    api_key = os.getenv("GEMINI_API_KEY")
+
 
 # Vérifier la clé API
 if not api_key:
@@ -177,5 +181,6 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
 
